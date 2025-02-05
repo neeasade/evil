@@ -2579,10 +2579,9 @@ when called interactively."
    (t
     (condition-case err
         (evil-with-single-undo
-          (let (pre-command-hook post-command-hook) ; For performance
-            (combine-after-change-calls
-              (execute-kbd-macro macro count)
-              (setq this-command 'evil-execute-macro)))) ; For repeatability
+          (combine-after-change-calls
+            (execute-kbd-macro macro count)
+            (setq this-command 'evil-execute-macro))) ; For repeatability
       ;; enter Normal state if the macro fails
       (error
        (evil-normal-state)
